@@ -10,7 +10,7 @@ const AddBook = ({ onClose }) => {
   }
 
   return (
-    <div className="popup-overlay" onClick={onClose}>
+    <div className="popup-overlay">
       <div className="popup">
         <div className="popup-inner">
           <h2>Add a Book</h2>

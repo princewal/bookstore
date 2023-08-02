@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 const BookForm = ({ initialBook, mode, onSubmit, onClose }) => {
   const [name, setName] = useState(initialBook.name)
@@ -9,8 +9,6 @@ const BookForm = ({ initialBook, mode, onSubmit, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    e.stopImmediatePropagation()
-    e.stopPropagation()
 
     if (!validateForm()) {
       return
@@ -42,14 +40,6 @@ const BookForm = ({ initialBook, mode, onSubmit, onClose }) => {
     setErrors(errors)
     return Object.keys(errors).length === 0
   }
-
-  const inputs = document.querySelectorAll("input, textarea")
-  inputs.forEach((input) => {
-    input.addEventListener("click", (e) => {
-      e.stopPropagation()
-      e.stopImmediatePropagation()
-    })
-  })
 
   return (
     <div className="popup-overlay">
