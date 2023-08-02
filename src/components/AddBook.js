@@ -10,19 +10,15 @@ const AddBook = ({ onClose }) => {
   }
 
   return (
-    <div className="popup-overlay">
-      <div className="popup">
-        <div className="popup-inner">
-          <h2>Add a Book</h2>
-          <BookForm
-            initialBook={{ name: "", price: "", category: "", description: "" }}
-            mode="add"
-            onSubmit={handleSubmit}
-            onClose={onClose}
-          />
-        </div>
-      </div>
-    </div>
+    <>
+      <h2>Add a Book</h2>
+      <BookForm
+        initialBook={{ name: "", price: "", category: "", description: "" }}
+        mode="add"
+        onSubmit={handleSubmit}
+        onClose={onClose}
+      />
+    </>
   )
 }
 

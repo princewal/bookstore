@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 
 const BookForm = ({ initialBook, mode, onSubmit, onClose }) => {
+  const [id, setId] = useState(initialBook.id || Date.now())
   const [name, setName] = useState(initialBook.name)
   const [price, setPrice] = useState(initialBook.price)
   const [category, setCategory] = useState(initialBook.category)
@@ -16,6 +17,7 @@ const BookForm = ({ initialBook, mode, onSubmit, onClose }) => {
 
     const updatedBook = {
       ...initialBook,
+      id,
       name,
       price,
       category,
@@ -23,6 +25,12 @@ const BookForm = ({ initialBook, mode, onSubmit, onClose }) => {
     }
     onSubmit(updatedBook)
     onClose()
+  }
+
+  const handlePopover = (e) => {
+    if (e.target.classList.contains("popup-overlay")) {
+      onClose()
+    }
   }
 
   const validateForm = () => {
@@ -42,10 +50,15 @@ const BookForm = ({ initialBook, mode, onSubmit, onClose }) => {
   }
 
   return (
-    <div className="popup-overlay">
+    <div className="popup-overlay" onClick={handlePopover}>
       <div className="popup">
         <h2>{mode === "add" ? "Add Book" : "Edit Book"}</h2>
         <form onSubmit={handleSubmit} noValidate>
+          <input
+            type="hidden"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
           <label htmlFor="name">Name:</label>
           <input
             id="name"

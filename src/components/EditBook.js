@@ -10,20 +10,15 @@ const EditBook = ({ book, onClose }) => {
   }
 
   return (
-    <div className="popup-overlay">
-      <div className="popup">
-        <div className="popup-inner">
-          <h2>Edit Book</h2>
-          <BookForm
-            initialBook={book}
-            mode="edit"
-            onSubmit={handleSubmit}
-            onClose={onClose}
-          />
-          ;
-        </div>
-      </div>
-    </div>
+    <>
+      <h2>Edit Book</h2>
+      <BookForm
+        initialBook={book}
+        mode="edit"
+        onSubmit={handleSubmit}
+        onClose={onClose}
+      />
+    </>
   )
 }
 
