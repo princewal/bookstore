@@ -1,58 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useState } from "react"
+import BookList from "./components/BookList"
+import AddBook from "./components/AddBook"
+import EditBook from "./components/EditBook"
 
-function App() {
+const App = () => {
+  const [showAddForm, setShowAddForm] = useState(false)
+  const [selectedBook, setSelectedBook] = useState(null)
+
+  const handleBookClick = (book) => {
+    setSelectedBook(book)
+  }
+
+  const handleAddButtonClick = () => {
+    setShowAddForm(true)
+  }
+
+  const handleCloseForm = () => {
+    setShowAddForm(false)
+    setSelectedBook(null)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className="container">
+      <h1>Bookstore App</h1>
+      <div>
+        <button className="btn btn-add" onClick={handleAddButtonClick}>
+          Add a Book
+        </button>
+      </div>
+      <BookList onBookClick={handleBookClick} />
+      {showAddForm && <AddBook onClose={handleCloseForm} />}
+      {selectedBook && (
+        <EditBook book={selectedBook} onClose={handleCloseForm} />
+      )}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
