@@ -12,10 +12,11 @@ body {
 }
 
 :root {
-  --white: rgba(255, 255, 255, 0.85);
+  --white: rgba(255, 255, 255, 0.95);
   --error-color: #B12704;
   --btn-delete: linear-gradient(-180deg, #FF7E31, #E62C03);
   --btn-add: linear-gradient(-180deg, #00D775, #00BD68);
+  --light-gray: #f9f9f9;
 }
 
 code {
@@ -155,7 +156,11 @@ h2 {
 }
 
 input, textarea {
-  padding: 5px 3px;
+  padding: 5px 3px 5px 6px;
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  
+  border: 1px solid gray
 }
 
 input#category {

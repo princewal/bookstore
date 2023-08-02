@@ -11,7 +11,7 @@ const EditBook = ({ book, onClose }) => {
   }
 
   return (
-    <div className="popup-overlay">
+    <div className="popup-overlay" onClick={onClose}>
       <div className="popup">
         <div className="popup-inner">
           <h2>Edit Book</h2>
