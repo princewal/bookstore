@@ -9,6 +9,9 @@ const BookForm = ({ initialBook, mode, onSubmit, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    e.stopImmediatePropagation()
+    e.stopPropagation()
+
     if (!validateForm()) {
       return
     }
@@ -39,6 +42,14 @@ const BookForm = ({ initialBook, mode, onSubmit, onClose }) => {
     setErrors(errors)
     return Object.keys(errors).length === 0
   }
+
+  const inputs = document.querySelectorAll("input, textarea")
+  inputs.forEach((input) => {
+    input.addEventListener("click", (e) => {
+      e.stopPropagation()
+      e.stopImmediatePropagation()
+    })
+  })
 
   return (
     <div className="popup-overlay">
